@@ -34,19 +34,36 @@ jobs:
         with:
           to: all
 
-      - uses: actions/upload-artifact@v4
+      # Artefactos descargables: funcionan también con el repositorio privado
+      # y sin Pages. El sitio se revisa bajando "sitio-html" y abriendo
+      # index.html; el PDF se baja suelto.
+      - name: Publicar el sitio como artefacto
+        uses: actions/upload-artifact@v4
         with:
-          name: libro
-          path: |
-            _book/filosofia-de-la-ciencia.pdf
+          name: sitio-html
+          path: _book
+          retention-days: 30
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Publicar el PDF como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: libro-pdf
+          path: _book/filosofia-de-la-ciencia.pdf
+          retention-days: 30
+
+      # GitHub Pages no está disponible para repositorios privados en el plan
+      # gratuito. Este paso queda dormido hasta que se cree la variable de
+      # repositorio PUBLICAR_PAGES con valor "true"
+      # (Settings -> Secrets and variables -> Actions -> Variables).
+      - name: Preparar artefacto de Pages
+        if: vars.PUBLICAR_PAGES == 'true'
+        uses: actions/upload-pages-artifact@v3
         with:
           path: _book
 
   deploy:
     needs: build
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && vars.PUBLICAR_PAGES == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
