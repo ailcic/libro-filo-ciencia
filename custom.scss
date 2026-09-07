@@ -1,0 +1,8 @@
+/*-- scss:defaults --*/
+// Pagella no está en Google Fonts, pero casi todo sistema trae un clon:
+// Palatino (macOS), Palatino Linotype (Windows), P052 (Linux).
+$font-family-serif: "Palatino", "Palatino Linotype", "Book Antiqua",
+                    "P052", "TeX Gyre Pagella", Georgia, serif;
+$font-family-sans-serif: $font-family-serif;
+$font-family-monospace: "DejaVu Sans Mono", "Consolas", monospace;
+$font-size-root: 17px;

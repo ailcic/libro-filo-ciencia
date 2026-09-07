@@ -1,0 +1,37 @@
+% Tipografía: TeX Gyre Pagella (clon libre de Palatino, licencia GUST).
+%
+% Las fuentes se piden por NOMBRE DE ARCHIVO y no por nombre de familia: los
+% .otf viven en el árbol texmf de TeX Live y XeTeX los encuentra por kpathsea,
+% mientras que buscarlos por nombre exige que fontconfig los tenga registrados
+% —cosa que no ocurre ni en una TinyTeX recién instalada ni en el runner de CI—.
+% Así el PDF compila igual en cualquier máquina con TeX Live, sin instalar
+% fuentes en el sistema.
+\setmainfont{texgyrepagella}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+\setsansfont{texgyreheros}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+  Scale          = MatchLowercase,
+]
+\setmonofont{texgyrecursor}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+  Scale          = MatchLowercase,
+]
+
+% Matemática en la misma familia que el texto.
+\usepackage{unicode-math}
+\setmathfont{texgyrepagella-math.otf}
+
+\usepackage{microtype}   % con xelatex: protrusión

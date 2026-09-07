@@ -1,12 +1,6 @@
 ---
 title: "Capítulo 0. Algunas notas para empezar: influencias, deudas y un par de confesiones"
-author: ""
 date: "2026-09-02"
-bibliography: referencias_cap00.bib
-csl: chicago-author-date.csl
-link-citations: true
-reference-section-title: "Referencias"
-lang: es
 ---
 
 Este libro es, como verás o habrás ya notado, es un experimento. No por eso, claro, está totalmente improvisado; al contrario, casi que es un experimento bastante cuidado y cauto por momentos, aunque en otros derrape un tanto. De hecho se podría hasta decir que la filosofía de la experimientación científica toma una suerte de giro recursivo en este libro en tanto también podría aplicarse a la filosofía de diseño de este libro. Experimento, en tanto concepto, tomará un rol más central que el de diseño en este texto, fundamentalmente en la primera parte, pero una serie de considearaciones y decisiones de diseño continúan estando presentes en las infraestructuras de esta producción, tanto la infraestructura conceptual como la de sus múltiples despliegues. Un poco por cursiodad que pueda haber, otro poco por una forma de honestidad intelectual, prentendo iniciar aquí con una descripción del orígen de algunas ideas, la dirección hacia las que van otras, y el eterno retorno de un retorcido presente de influencias y ansiedades que está en cualquier expresión que intente decir algo acerca de algo, especialmente si "algo" = algo, y así.

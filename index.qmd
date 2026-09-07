@@ -1,0 +1,36 @@
+---
+title: "Sobre este libro"
+---
+
+Este libro es un texto de filosofía general de las ciencias, escrito en abierto
+y en curso de escritura. Sostiene que la ciencia es ante todo un conjunto de
+prácticas material, tecnológica e institucionalmente situadas, y que su historia
+no es un accidente externo sino una dimensión constitutiva de su racionalidad.
+Los tres infinitivos de su subtítulo —representar, intervenir, historizar—
+resumen esa tesis.
+
+Se organiza en dos partes de estatuto pedagógico distinto. La **primera parte**
+es introductoria: presupone solo formación filosófica general y recorre los
+problemas clásicos de la disciplina. La **segunda parte** supone adquirido ese
+recorrido y aborda problemas avanzados en la intersección de ciencia,
+tecnología y computación. El capítulo 1 expone el plan completo.
+
+## Estado
+
+La primera parte está escrita salvo el capítulo 8; la segunda parte y el
+epílogo están pendientes. Lo que se publica aquí es, por lo tanto, un borrador
+en curso: se corrige, se amplía y se reescribe, y cada versión queda registrada
+en el historial del repositorio.
+
+## Cómo leerlo y cómo corregirlo
+
+El libro se lee en línea en esta misma web y se descarga en PDF. La fuente es
+Markdown y vive en un repositorio público: quien encuentre un error —de dato, de
+cita, de tipografía o de argumento— puede abrir una *errata* en el repositorio o
+proponer directamente la corrección. Las correcciones recibidas se acreditan.
+
+## Licencia
+
+Creative Commons Atribución-CompartirIgual 4.0 Internacional (CC BY-SA 4.0):
+se puede copiar, redistribuir y adaptar, incluso con fines comerciales, siempre
+que se dé crédito y que lo derivado se comparta bajo la misma licencia.

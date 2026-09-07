@@ -1,0 +1,9 @@
+_book/
+.quarto/
+*.quarto_ipynb
+
+# Complementos bibliográficos con copyright: quedan en Nextcloud, no en el repo.
+complementos_bibcienciasffyh/
+
+/.quarto/
+**/*.quarto_ipynb
