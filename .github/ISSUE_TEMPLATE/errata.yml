@@ -1,0 +1,54 @@
+name: Errata o corrección
+description: Reportá un error o proponé una corrección de texto
+title: "[errata] "
+labels: [errata]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por leer con atención. Sirve cualquier cosa: una errata
+        tipográfica, un dato mal citado, una página equivocada, un argumento
+        que no cierra. Las correcciones se acreditan.
+  - type: dropdown
+    id: capitulo
+    attributes:
+      label: Capítulo
+      options:
+        - "Sobre este libro (portada)"
+        - "0 — Algunas notas para empezar"
+        - "1 — Conocer científicamente"
+        - "2 — La indeterminación de la prueba"
+        - "3 — El giro historicista"
+        - "4 — La explicación científica"
+        - "5 — El realismo y sus alternativas"
+        - "6 — La experimentación y los instrumentos"
+        - "7 — Narración, selección y modelo"
+        - "9 — Valores, comunidad y sociedad"
+        - "Bibliografía"
+        - "Otro / no sé"
+    validations:
+      required: true
+  - type: input
+    id: ubicacion
+    attributes:
+      label: Ubicación
+      description: Sección (§N), párrafo, o página del PDF.
+      placeholder: "§4, tercer párrafo (PDF p. 87)"
+    validations:
+      required: true
+  - type: textarea
+    id: texto-actual
+    attributes:
+      label: Texto actual
+      description: Copiá el fragmento tal como está.
+  - type: textarea
+    id: texto-propuesto
+    attributes:
+      label: Corrección propuesta
+    validations:
+      required: true
+  - type: textarea
+    id: justificacion
+    attributes:
+      label: Justificación o fuente
+      description: Si es un error de dato o de cita, indicá de dónde surge la corrección.

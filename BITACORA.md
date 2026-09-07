@@ -4,10 +4,14 @@ Registro de trabajo sobre el manuscrito. **Las entradas van en orden cronológic
 
 Convenciones del proyecto, para no volver a averiguarlas:
 
-- Un archivo por capítulo (`capitulo_NN_tema.md`) con su bibliografía propia (`referencias_capNN.bib`); las claves BibTeX se repiten entre capítulos cuando la obra se cita en varios (mismo formato de clave: `autorAÑOpalabra`).
-- Pandoc Markdown con `--citeproc`, citas autor-fecha `[@clave]`, secciones con `# §N. Título`, énfasis con `*cursiva*`.
+- Un archivo por capítulo (`capitulo_NN_tema.md`). **Una sola bibliografía, `referencias.bib`**, para todo el libro: una clave por obra (formato `autorAÑOpalabra`), definida una única vez aunque la obra se cite en varios capítulos.
+- Pandoc Markdown (Quarto lo trae embebido), citas autor-fecha `[@clave]`, **secciones con `## §N. Título`**, énfasis con `*cursiva*`.
+- El título del capítulo va en el `title:` del YAML y **no** como encabezado en el cuerpo: en un libro Quarto un `#` en el cuerpo significa capítulo nuevo.
+- El encabezado YAML de cada capítulo lleva solo `title:` y `date:`. Bibliografía, estilo de cita, idioma y formatos se declaran una vez en `_quarto.yml`.
+- Ningún capítulo escribe su sección de referencias a mano: Quarto la agrega al final de cada capítulo en el HTML, y en el PDF la bibliografía aparece una sola vez, en `referencias.qmd`.
 - Cada capítulo cierra indicando sus prolongaciones en la segunda parte (plan de la obra: capítulo 1, §7).
-- Énfasis solo con *cursiva*: los capítulos de la primera parte no usan negrita ni subtítulos de nivel 2; cada sección es prosa continua bajo `# §N. Título`.
+- Énfasis solo con *cursiva*: los capítulos de la primera parte no usan negrita ni subtítulos de nivel 3; cada sección es prosa continua bajo `## §N. Título`.
+- La numeración de capítulos y secciones es **manual** (`number-sections: false`): las remisiones en prosa dependen de ella y el capítulo 08, todavía ausente, no debe correr la cuenta.
 
 ## Estado del manuscrito (al 6 de septiembre de 2026)
 
@@ -24,6 +28,70 @@ Convenciones del proyecto, para no volver a averiguarlas:
 | 08 | Probabilidad e inferencia | pendiente |
 | 09 | Valores, comunidad y sociedad | escrito |
 | 10–18 | Segunda parte + epílogo | pendientes |
+
+---
+
+## 2026-09-06 — Publicación: el manuscrito se convierte en libro Quarto sobre git
+
+**Archivos modificados**
+
+- Los 9 capítulos: encabezados de sección, encabezado YAML y bloque de referencias.
+- `capitulo_00_algunas notas para empezar.md` → `capitulo_00_notas_para_empezar.md` (el espacio rompe scripts, URLs y CI).
+- `referencias_cap00.bib` … `referencias_cap09.bib` → **`referencias.bib`** (único).
+- Nuevos: `_quarto.yml`, `index.qmd`, `referencias.qmd`, `preamble.tex`, `custom.scss`, `apa.csl`, `.gitignore`, `LICENSE`, `.github/workflows/render.yml`, `.github/ISSUE_TEMPLATE/errata.yml`.
+- `BITACORA.md`: convenciones reescritas (bibliografía única, `## §N.`, YAML mínimo, numeración manual).
+
+**Motivo**
+
+El libro pasa a publicarse en abierto. Se evaluaron pandoc plano con Makefile, Jupyter Book/MyST y mdBook, y se eligió **Quarto**: es pandoc por dentro —lo trae embebido—, de modo que el requisito de fuente Markdown con salida LaTeX se cumple por construcción, y aporta lo que un Makefile obligaría a construir a mano: ensamblado del libro, HTML navegable con buscador, y una sola configuración en lugar de nueve encabezados duplicados. Los capítulos siguen siendo `.md` y no `.qmd`, así que cada uno se puede compilar con pandoc suelto: la salida de Quarto queda abierta. MyST se descartó por ser un dialecto distinto de pandoc; mdBook, por su ruta a PDF.
+
+El repositorio vive ahora en `~/proyectos/libro-filosofia-ciencia`, **fuera de Nextcloud**: un `.git` sincronizado se corrompe cuando dos máquinas escriben índices y locks a la vez. Los PDF de `complementos_bibcienciasffyh/` quedan en Nextcloud y están en `.gitignore` (tienen copyright).
+
+**Cambios en el manuscrito**
+
+- Las secciones pasan de `# §N.` a `## §N.`: en un libro Quarto un `#` en el cuerpo significa capítulo, de modo que cada § habría producido un capítulo del PDF. El título lo aporta el `title:` del YAML.
+- Los encabezados YAML pierden `bibliography`, `csl`, `lang`, `link-citations`, `reference-section-title` y `author`: todo eso se declara una vez en `_quarto.yml`.
+- Se quita el bloque `# Referencias` manual del final de cada capítulo. Quarto agrega la lista al final de cada capítulo en el HTML; en el PDF la bibliografía va una sola vez, en `referencias.qmd`.
+
+**Bibliografía**
+
+Los nueve `.bib` tenían 259 entradas con 183 claves: 76 duplicadas, y ya divergiendo. Cuatro claves estaban definidas de manera distinta según el archivo y se resolvieron a mano:
+
+- `kuhn1962structure` — se conserva la variante con la nota sobre la 2.ª edición ampliada de 1970.
+- `popper1978dos` — se conserva la nota superconjunto (la del capítulo 1, que además indica la procedencia de la fórmula kantiana citada en la p. 22).
+- `rescher1977methodological` — «Basil Blackwell», que es el sello correcto en 1977.
+- `scriven1959explanation` — es un artículo de *Science*: queda como `@article` y no como `@book`.
+
+Además, cinco campos `publisher` con «and» se protegieron con llaves dobles: el lector BibTeX los tomaba como lista de nombres e imprimía «Chapman; Hall».
+
+**Estilo de cita**
+
+APA 7 (`apa.csl` comiteado) con `lang: es`, que da la localización castellana. Reemplaza al `chicago-author-date.csl` que los nueve capítulos declaraban y que nunca existió en el directorio: **queda cerrado el pendiente n.º 2 de la entrada del 2026-09-04 y el n.º 4 de la entrada anterior.**
+
+**Entorno**
+
+Quarto 1.10.18 instalado en `~/.local/opt` (trae pandoc 3.10 embebido) y TinyTeX en `~/.TinyTeX`, ambos sin `rpm-ostree` ni contenedores, que en Kinoite es lo que corresponde. **Queda cerrado el pendiente n.º 1 de la entrada anterior: pandoc ya está disponible y los capítulos compilan con `--citeproc`.**
+
+Hay una salvedad importante, anotada abajo como pendiente: `tlmgr` es un script de Perl y Fedora Kinoite no trae Perl, de modo que la instalación automática de paquetes LaTeX de Quarto **no funciona en esta máquina**. Los paquetes que faltaban —`babel-spanish`, `hyphen-spanish`, `tex-gyre-math`— se instalaron descomprimiendo a mano los `.tar.xz` de tlnet en `~/.TinyTeX/texmf-dist`, y el español se registró a mano en `language.dat` y `language.def` para reconstruir el formato de xelatex con `xetex -ini` (sin `fmtutil`, que también es Perl). Sin ese paso el PDF sale con guionado inglés.
+
+En `preamble.tex` las fuentes se piden **por nombre de archivo** y no por nombre de familia: los `.otf` de TeX Gyre viven en el árbol texmf y XeTeX los encuentra por kpathsea, mientras que buscarlos por nombre exige que fontconfig los tenga registrados, cosa que no ocurre ni en una TinyTeX recién instalada ni en el runner de CI.
+
+**Verificaciones hechas**
+
+- Las 183 claves citadas resuelven contra `referencias.bib`; ninguna entrada queda sin usar; ninguna duplicada. El render no emite advertencias de citeproc.
+- `quarto render` produce HTML navegable y un PDF de 236 páginas.
+- El PDF incrusta TeX Gyre Pagella (texto y matemática) y TeX Gyre Heros; los rótulos salen en castellano («Tabla de contenidos», «Capítulo»).
+- Cada archivo produce un capítulo, no ocho: la demotación de encabezados quedó bien.
+- La bibliografía aparece una sola vez en el PDF. Antes de corregirlo se repetía en los nueve capítulos —cada `div #refs` de un libro Quarto recibe la bibliografía completa—, lo que inflaba el PDF a 334 páginas.
+- Las citas salen en autor-fecha APA con localización castellana («En M. Curd & S. Psillos (Eds.)»).
+
+**Pendientes que este trabajo dejó planteados**
+
+1. **Faltan el título definitivo del libro y el nombre del autor**: `_quarto.yml` los tiene como `TODO`. Hoy figura «Filosofía de la ciencia / Representar, intervenir, historizar» y el autor vacío.
+2. **Sin Perl, `tlmgr` no corre.** Si en el futuro hace falta otro paquete LaTeX, hay dos caminos: `rpm-ostree install perl-interpreter` (persistente, exige reinicio) o un `toolbox` con Perl, que comparte `$HOME` y por lo tanto puede operar sobre `~/.TinyTeX`. En CI no hace falta: el runner trae Perl.
+3. **Decidir si se quiere bibliografía por capítulo también en el PDF.** Hoy el HTML la tiene por capítulo y el PDF una sola al final. Tenerla por capítulo en el PDF exigiría abandonar citeproc por biblatex con `refsection`, y con ello el `.csl` de APA.
+4. **Confirmar la licencia.** Se dejó CC BY-SA 4.0.
+5. Sigue abierto lo demás de las entradas anteriores: verificar el año de la traducción de Popper, el de Díez y Moulines, la cita de Britannica, y armonizar el capítulo 7 §2 con el capítulo 4.
 
 ---
 

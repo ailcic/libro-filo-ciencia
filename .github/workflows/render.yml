@@ -1,0 +1,56 @@
+name: render-book
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
+
+      # El libro no ejecuta código: no hace falta Python ni Jupyter.
+      # Cuando exista el capítulo 08 habrá que agregar aquí setup-python
+      # y la instalación de requirements.txt.
+      - name: Renderizar HTML y PDF
+        uses: quarto-dev/quarto-actions/render@v2
+        with:
+          to: all
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: libro
+          path: |
+            _book/filosofia-de-la-ciencia.pdf
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _book
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
