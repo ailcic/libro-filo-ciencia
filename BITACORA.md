@@ -80,8 +80,8 @@ Cerrar una primera versión publicable de la primera parte (versión 0.1): sin m
 
 **Pendientes que este trabajo dejó planteados**
 
-1. **Ver el PDF que produce CI** (TinyTeX en el runner) y adjuntarlo al *release* `v0.1`; verificar allí las fórmulas del capítulo 8 y los recuadros del capítulo 1.
-2. **DNS**: crear en Cloudflare el registro `CNAME manual → ailcic.github.io` y, cuando GitHub emita el certificado, activar «Enforce HTTPS» (ver `ENTORNO.md`, §4). Zenodo y DOI siguen pendientes (`ENTORNO.md`, pendiente 5).
+1. ~~Ver el PDF que produce CI y adjuntarlo al *release*~~ — hecho el mismo día: el primer *run* de CI compiló y desplegó sin errores; el *release* `v0.1` lleva adjunto el PDF compilado localmente con Quarto 1.10.18 y TeX Live 2026 (322 páginas, bibliografía única, recuadros del capítulo 1 como cajas). Queda comparar con el PDF del artefacto de CI (TinyTeX) por si difieren en tipografía.
+2. ~~DNS~~ — `manual.delaciencia.org` ya apuntaba a GitHub Pages a través del proxy de Cloudflare y sirvió el libro desde el primer despliegue. GitHub no emite certificado propio mientras el dominio esté *proxied* (el HTTPS lo da Cloudflare): no activar «Enforce HTTPS» en GitHub salvo que se pase el registro a DNS only. Zenodo y DOI siguen pendientes (`ENTORNO.md`, pendiente 5).
 3. **Copia de Nextcloud**: borrar o marcar como respaldo `~/Nextcloud/2026/libro-filosofia-ciencia` para no editar dos copias.
 4. **Borradores 10-12**: revisarlos antes de incorporarlos; el 12 cita cuatro obras que no están en la biblioteca local (Star y Ruhleder 1996, Ziemann et al. 2016, Eklund et al. 2016, Spolsky 2002) y cuyas referencias deben verificarse; el 10 y el 11 se cotejaron contra las fuentes.
 5. **Cuaderno**: probarlo en el entorno en que lo usarán los estudiantes (Colab o Binder) y decidir si conviene un `environment.yml` o un enlace directo; considerar cuadernos análogos para los capítulos 2 (contrastación) y 11 (simulación) cuando exista.
