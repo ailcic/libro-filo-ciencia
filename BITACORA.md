@@ -11,23 +11,177 @@ Convenciones del proyecto, para no volver a averiguarlas:
 - Ningún capítulo escribe su sección de referencias a mano: Quarto la agrega al final de cada capítulo en el HTML, y en el PDF la bibliografía aparece una sola vez, en `referencias.qmd`.
 - Cada capítulo cierra indicando sus prolongaciones en la segunda parte (plan de la obra: capítulo 1, §7).
 - Énfasis solo con *cursiva*: los capítulos de la primera parte no usan negrita ni subtítulos de nivel 3; cada sección es prosa continua bajo `## §N. Título`.
-- La numeración de capítulos y secciones es **manual** (`number-sections: false`): las remisiones en prosa dependen de ella y el capítulo 08, todavía ausente, no debe correr la cuenta.
+- La numeración de capítulos y secciones es **manual** (`number-sections: false`): las remisiones en prosa dependen de ella.
+- Cada capítulo de la primera parte cierra con una *Nota de lecturas* (párrafo que empieza con `*Nota de lecturas.*`), con sugerencias accesibles y con página cuando corresponde.
+- Traducciones: la entrada del `.bib` es la edición efectivamente citada y lleva `origdate` con el año del original, de modo que la cita sale «Kuhn (1963/1980)»; la clave usa el año del original. Las citas de segunda mano se hacen a través de la fuente que las recoge, y se lo indica en el texto (Kant y Einstein a través de Popper en el capítulo 1; los textos de Kuhn posteriores a *La estructura* a través de Pérez Ransanz en el capítulo 3).
+- Fórmulas en LaTeX de pandoc (`$...$`), usadas por primera vez en el capítulo 8; decimales con coma en prosa y `0{,}9` en fórmulas; porcentajes con espacio duro («90 %»).
+- Los recuadros de rememoración («Cuadro clásico N», «Cuadro matemático N») son *callouts* de Quarto (`::: {.callout-note title="..."}`); pandoc suelto los compila como un `div` sin título, y Quarto les pone caja y título.
+- El código ejecutable va en cuadernos Jupyter aparte (`cuaderno_NN_tema.ipynb`), fuera de la lista de capítulos, ejecutados a mano y versionados con sus salidas; los capítulos siguen siendo `.md` y el libro no ejecuta código.
+- Los borradores de capítulos que todavía no forman parte del libro se guardan en el directorio con su nombre definitivo (`capitulo_1N_tema.md`) pero no figuran en `_quarto.yml`; se anotan aquí como borradores.
 
-## Estado del manuscrito (al 6 de septiembre de 2026)
+## Estado del manuscrito (al 13 de septiembre de 2026 — versión 0.1)
 
 | Cap. | Título breve | Estado |
 |---|---|---|
-| 00 | Notas para empezar: influencias y deudas | escrito |
-| 01 | Conocer científicamente | escrito — ampliado 2026-09-06 |
-| 02 | La indeterminación de la prueba | escrito — ampliado 2026-09-06 |
-| 03 | El giro historicista | escrito |
-| 04 | La explicación científica | escrito — ampliado 2026-09-04 |
-| 05 | El realismo y sus alternativas | escrito |
-| 06 | La experimentación y los instrumentos | escrito |
-| 07 | Narración, selección y modelo | escrito |
-| 08 | Probabilidad e inferencia | pendiente |
-| 09 | Valores, comunidad y sociedad | escrito |
-| 10–18 | Segunda parte + epílogo | pendientes |
+| 00 | Notas para empezar: influencias y deudas | escrito — secciones finales completadas 2026-09-13 |
+| 01 | Conocer científicamente | escrito — ampliado 2026-09-06; nota de lecturas y recuadros 2026-09-13 |
+| 02 | La indeterminación de la prueba | escrito — ampliado 2026-09-06; nota de lecturas 2026-09-13 |
+| 03 | El giro historicista | reescrito 2026-09-13 |
+| 04 | La explicación científica | escrito — ampliado 2026-09-04; remisiones 2026-09-13 |
+| 05 | El realismo y sus alternativas | escrito — §3 ampliado 2026-09-13 |
+| 06 | La experimentación y los instrumentos | escrito — nota de lecturas 2026-09-13 |
+| 07 | Narración, selección y modelo | escrito — §2 reescrito 2026-09-13 |
+| 08 | Probabilidad e inferencia | escrito 2026-09-13; cuaderno de acompañamiento `cuaderno_08_estadistica.ipynb` |
+| 09 | Valores, comunidad y sociedad | escrito — remisiones 2026-09-13 |
+| 10–12 | Estilos de razonamiento; simulación; abstracción e infraestructura | borradores 2026-09-13, fuera del libro |
+| 13–18 | Resto de la segunda parte + epílogo | pendientes |
+
+---
+
+## 2026-09-13 — Versión 0.1: cierre de la primera parte y cuaderno del capítulo 8
+
+**Archivos modificados**
+
+- `capitulo_00_notas_para_empezar.md` — se escribieron las dos secciones que estaban vacías, «Historia de la ciencia y la tecnología» y «Algo de metafísica» (~900 palabras en total), en la voz confesional del capítulo; erratas del primer párrafo.
+- `capitulo_01_conocer_cientificamente.md` — los dos marcadores `[Cuadro clasicoso 1]` y `[Cuadro matematicoso 1]` del §7 se reemplazaron por recuadros reales: «Cuadro clásico 1. Lo que los antiguos pedían del saber» (*Teeteto*, *Menón*, *Analíticos segundos*) y «Cuadro matemático 1. Dos formas válidas y una falacia» (*modus ponens*, *modus tollens*, afirmación del consecuente, con remisión al capítulo 2 §5 y al 8 §6); la frase que los anuncia se corrigió («dosis», «exclusivamente») y dice ahora que en esta versión son los únicos.
+- `capitulo_02_indeterminacion_de_la_prueba.md` — §6: los subíndices Unicode (`P₁`, `Pₙ`, `Pᵢ`) pasan a fórmulas (`$P_1$`, `$P_n$`, `$P_i$`); desaparecen las advertencias de glifos ausentes en Pagella itálica.
+- `capitulo_08_probabilidad_inferencia.md` — la nota de lecturas remite al cuaderno de acompañamiento.
+- **`cuaderno_08_estadistica.ipynb` — nuevo.** Cuaderno Jupyter de acompañamiento del capítulo 8: introducción a la probabilidad y la estadística para estudiantes de filosofía, 34 celdas en diez secciones, cada una referida al § del capítulo que ilustra: frecuencia relativa y los cálculos de Salmon y De Méré (§2-3); teorema de Bayes con el cribado médico (posterior 0,0089) y los dos mazos (3/8) (§3); lavado de las probabilidades previas con distribuciones Beta (§6); error estándar, cobertura de intervalos de confianza y el *Literary Digest* (§7); regresión a la media (§7); paradoja de Simpson con una población ficticia del tipo del caso israelí (§5); la dama del té, valor *p*, errores de tipo I y II y potencia (§8); comparaciones múltiples y detención opcional (§9); la crisis de replicación como cálculo de tasa de base (§9); y ejercicios. No repite el argumento filosófico: lo ilustra. Se distribuye ejecutado, con seis figuras incrustadas.
+- `requirements.txt` — nuevo: `numpy`, `matplotlib`, `scipy`, solo para el cuaderno.
+- `referencias.bib` — de 195 a 221 entradas: cuatro para el capítulo 0 (`lakatos1976proofs`, `rescher1996process`, `vincenti1990what`, `whitehead1929process`) y veintidós que solo usan los borradores de la segunda parte (ver abajo).
+- `_quarto.yml` — `author: "Andrés A. Ilcic"` (era un `TODO` vacío); comentario sobre el cuaderno y sobre los borradores.
+- `index.qmd`, `README.md`, `ENTORNO.md`, `.github/workflows/render.yml`, `.gitignore` — estado «versión 0.1», el cuaderno y sus requisitos, `.ipynb_checkpoints/` ignorado.
+- **Borradores fuera del libro**: `capitulo_10_estilos_de_razonamiento.md` (~9.800 palabras), `capitulo_11_simulacion_computacional.md` (~9.100) y `capitulo_12_abstraccion_infraestructura.md` (~9.900) se escribieron en esta misma sesión, antes de que se decidiera cerrar solo la primera parte. Compilan con `pandoc --citeproc` y sus claves están en `referencias.bib`, pero **no figuran en `_quarto.yml` y no forman parte de la versión 0.1**. Fuentes: Crombie, Hacking (1992, 2002, *La domesticación del azar*), Ruphy, Galison (caps. 8 y 9), Lenhard (*Calculated Surprises*), Durán, Winsberg y Harvard, Turner, Tedre, Rieder, Tanenbaum y Bos, y las entradas del *Glosario de filosofía de la técnica*. Quedan como punto de partida de la segunda parte y deben revisarse antes de incorporarse.
+
+**Motivo**
+
+Cerrar una primera versión publicable de la primera parte (versión 0.1): sin marcadores ni secciones vacías, con autor, con el capítulo 8 acompañado por un cuaderno de estadística separado del texto, y con una pasada de coherencia sobre los capítulos 0 a 9.
+
+**Pasada de coherencia**
+
+- Todas las remisiones «capítulo N (§M)» de los capítulos 0 a 9 apuntan a secciones existentes (comprobación automática). Las remisiones a los capítulos 10-18 se conservan: el capítulo 1 y la portada declaran que la segunda parte está pendiente.
+- Los dos recuadros del capítulo 1 usan las mismas letras que el capítulo 2 (*H*, *P*) y remiten a las secciones donde los esquemas se complican (2 §5) y donde la confirmación recibe forma probabilística (8 §6).
+- Las secciones nuevas del capítulo 0 citan solo obras ya usadas en la primera parte (Kuhn, Crombie, Hacking, Shapin y Schaffer, Galison, Losee, Simondon, Simon, Dewey) más las cuatro nuevas; sus tesis coinciden con los compromisos del capítulo 1 §7 (procesual) y del capítulo 5 §5 (realismo de efectos).
+- Los números del cuaderno reproducen los del capítulo: 91/216, 0,491, 0,1008 y 0,0089, 2/9 y 3/8, 1/70; la cobertura simulada de los intervalos del 95 % da 0,949; la tasa de falsos positivos simulada con α = 0,05 da 0,052.
+
+**Verificaciones hechas**
+
+- `pandoc --citeproc` compila los diez capítulos sin advertencias.
+- Las 199 claves citadas en los capítulos 0-9 resuelven; las 22 restantes del `.bib` solo las citan los borradores 10-12.
+- PDF de prueba de la primera parte entera (capítulos 0-9 concatenados, `scrbook`, `xelatex`, `preamble.tex`): 204 páginas, sin caracteres ausentes en el registro de xelatex (antes había 22 avisos por los subíndices del capítulo 2), sin errores; solo quedan `Overfull \hbox` de cabeceras.
+- El cuaderno se ejecutó de principio a fin en un entorno virtual limpio (Python 3.14, numpy 2.5, matplotlib 3.11, scipy 1.18): 34 celdas, 0 errores, 6 figuras, 14 segundos.
+- Los recuadros compilan como *callouts* en Quarto (sintaxis estándar) y como `div` sin título en pandoc suelto; en el PDF de prueba el contenido aparece sin caja.
+
+**Publicación**
+
+- El repositorio se copió a `~/Documents/gits_self/libro-filo-ciencia` (fuera de Nextcloud, como pedía `ENTORNO.md`) y se creó el remoto público `github.com/ailcic/libro-filo-ciencia`. La copia de Nextcloud queda como respaldo y no debe editarse.
+- `quarto render --to html` corrió por fin (Quarto 1.10.18 descomprimido en `~/Applications`): el sitio compila y los dos *callouts* del capítulo 1 aparecen como cajas.
+- Deploy: GitHub Actions compila HTML y PDF y publica en GitHub Pages con el dominio `manual.delaciencia.org` (archivo `CNAME` + `site-url` en `_quarto.yml`; DNS en Cloudflare). Detalles en `ENTORNO.md`, §4.
+
+**Pendientes que este trabajo dejó planteados**
+
+1. **Ver el PDF que produce CI** (TinyTeX en el runner) y adjuntarlo al *release* `v0.1`; verificar allí las fórmulas del capítulo 8 y los recuadros del capítulo 1.
+2. **DNS**: crear en Cloudflare el registro `CNAME manual → ailcic.github.io` y, cuando GitHub emita el certificado, activar «Enforce HTTPS» (ver `ENTORNO.md`, §4). Zenodo y DOI siguen pendientes (`ENTORNO.md`, pendiente 5).
+3. **Copia de Nextcloud**: borrar o marcar como respaldo `~/Nextcloud/2026/libro-filosofia-ciencia` para no editar dos copias.
+4. **Borradores 10-12**: revisarlos antes de incorporarlos; el 12 cita cuatro obras que no están en la biblioteca local (Star y Ruhleder 1996, Ziemann et al. 2016, Eklund et al. 2016, Spolsky 2002) y cuyas referencias deben verificarse; el 10 y el 11 se cotejaron contra las fuentes.
+5. **Cuaderno**: probarlo en el entorno en que lo usarán los estudiantes (Colab o Binder) y decidir si conviene un `environment.yml` o un enlace directo; considerar cuadernos análogos para los capítulos 2 (contrastación) y 11 (simulación) cuando exista.
+6. **Verificaciones de edición pendientes de la entrada anterior**: Teorema 1979/1980, datos de Taylor, Britannica, año de Popper y de Díez y Moulines.
+
+---
+
+## 2026-09-13 — Primera parte: capítulo 8 nuevo, capítulo 3 reescrito y coherencia interna desde la carpeta de lecturas
+
+**Archivos modificados**
+
+- `capitulo_08_probabilidad_inferencia.md` — **nuevo**: 10 secciones, ~14.000 palabras.
+- `capitulo_03_giro_historicista.md` — de 6 a 9 secciones; de ~4.800 a ~11.700 palabras.
+- `capitulo_07_modelos_evolucion.md` — §2 reescrito (de ~600 a ~2.500 palabras); retoques en §1 y §6; nota de lecturas.
+- `capitulo_05_realismo.md` — párrafo nuevo en §3; nota de lecturas.
+- `capitulo_01`, `capitulo_02`, `capitulo_04`, `capitulo_06`, `capitulo_09` — remisiones cruzadas, páginas y notas de lecturas.
+- `referencias.bib` — de 183 a 195 entradas; `kuhn1977essential` pasa a describir la edición castellana (FCE, 1982), que es la que ahora se cita con página.
+- `apa.csl` — término castellano `original-work-published` («trabajo original publicado en»).
+- `_quarto.yml` — el capítulo 8 entra en la lista de capítulos como `.md`.
+- `README.md`, `index.qmd`, `ENTORNO.md` — estado del capítulo 8 y decisión sobre `.md`/`.qmd`.
+
+**Motivo**
+
+El pedido fue usar los textos de la carpeta `refs/filosofia de la ciencia/` (quince PDF) como guía y como sugerencias de lectura para ordenar la coherencia interna de la primera parte, con tres indicaciones precisas: que el capítulo 8 se apoyara principalmente en la inferencia estadística de Salmon (*The Foundations of Scientific Inference*) y de Potochnik, Colombo y Wright (*Recipes for Science*); que el capítulo 3 se apoyara de manera sustantiva en Pérez Ransanz (*Kuhn y el cambio científico*); y que la noción de explicación narrativa se fundara en Martínez (*De los efectos a las causas*, cap. 8). El pedido nombraba la carpeta vieja `book_filosofiadelaciencia/`, pero su `LEEME` indica que está desactualizada y que no se edite: los cambios se hicieron en este repositorio.
+
+Además de esas tres indicaciones, la lectura del libro entero mostró huecos de coherencia concretos: el capítulo 8 estaba prometido en los capítulos 1 (§2), 2 (§4), 7 (§6) y 9 (§1, §4 y §6) y no existía; el capítulo 1 prometía que el 3 mostraría por qué las lecturas relativistas del historicismo fallan, y el 3 no trataba el relativismo; el capítulo 7 §2 duplicaba el tema de la explicación narrativa del capítulo 4 §2 sin su fuente (pendiente de la entrada del 2026-09-04).
+
+**Fuentes utilizadas**
+
+- Salmon, *The Foundations of Scientific Inference* (ed. del cincuentenario, 2017), caps. I-VII y conclusión, pp. 1-132, y el ensayo introductorio de Hitchcock, pp. ix-xxxv.
+- Potochnik, Colombo y Wright, *Recipes for Science* (2.ª ed., 2024), caps. 7-11 (pp. 161-290), con pasajes de los caps. 3 (aleatorización, crisis de replicación) y 9-10 (estadística descriptiva e inferencial).
+- Pérez Ransanz, *Kuhn y el cambio científico* (FCE, 1999), caps. I-VI y VIII.
+- Kuhn, «La función del dogma en la investigación científica» (Cuadernos Teorema, 1980), pp. 3-44, y «Las relaciones entre la historia y la filosofía de la ciencia», en *La tensión esencial* (FCE, 1982), pp. 27-45.
+- Taylor, «Comprensión y etnocentrismo», en *La libertad de los modernos* (Amorrortu, 2005), pp. 199-222.
+- Martínez, *De los efectos a las causas*, cap. 8, pp. 145-158, y la primera página del cap. 9.
+- Losee, *Introducción histórica a la filosofía de la ciencia* (Alianza, 3.ª ed., 1981), caps. 2, 6 y 10.
+- Earman y Salmon, Lennox, McGuire, Glymour y W. Salmon, capítulos del manual colectivo *Introduction to the Philosophy of Science* (Prentice Hall 1992; Hackett 1999).
+- Hacking, *Representar e intervenir* (Paidós/UNAM, 1996), para las notas de lectura; Díez y Moulines y la introducción de Popper de 1978 ya estaban incorporados.
+
+**Capítulo 8 — *Probabilidad e inferencia: el azar, la estadística y el peso de la evidencia***
+
+- **§1.** Abre con el anuncio del bosón de Higgs y la cifra «una vez en tres millones», para distinguir la probabilidad de los datos bajo el ruido de la probabilidad de la hipótesis. **Tesis propia: la probabilidad y la estadística son la forma que la ciencia moderna dio a la condición C2 del capítulo 2**; no disuelven su relatividad a las alternativas en juego, la vuelven explícita y discutible. Salda las deudas de los capítulos 1 (corroborar no es hacer probable) y 2 (la objeción de Salmon a Popper).
+- **§2.** Hume reformulado con Salmon: inferencia ampliativa; el problema de la inducción como problema de la evidencia (las tres reglas del dado); coincidencia frente a regularidad genuina (el distrito de Maryland).
+- **§3.** El cálculo: De Méré, Pascal y Fermat; los tres usos de la probabilidad; axiomas de Kolmogorov; teorema de Bayes con el término $\Pr(E \mid \neg H)$; los dos mazos de Salmon y el cribado médico de Potochnik (falacia de la tasa de base).
+- **§4.** Criterios de admisibilidad, determinabilidad y aplicabilidad; interpretaciones clásica (paradoja del auto), subjetiva, lógica (diálogo del hipódromo, invariancia lingüística), personalista (apuesta holandesa, tolerancia de absurdos), frecuentista (vindicación pragmática de Reichenbach y reglas asintóticas) y de propensiones (paradoja de Humphreys); pluralismo articulado; el caso *Challenger*.
+- **§5.** Caso único y clase de referencia; relevancia estadística (enlace con el capítulo 4 §4); paradoja de Simpson (vacunación en Israel); aceptar frente a asignar probabilidad (Strawson, paradoja de la lotería), enlace con el riesgo inductivo del capítulo 9.
+- **§6.** Bayes como estructura de la confirmación: Hanson y Popper reconciliados; Poisson y Arago frente a la dianética; **C2 como la verosimilitud bajo la hipótesis comodín, y la advertencia de Kuhn sobre las teorías probabilistas**; dos sentidos de «confirmar» (respuesta al capítulo 1); Neptuno y Vulcano como redistribución de probabilidad; probabilidades previas, lavado, criterios de plausibilidad de Salmon; eliminación y variedad de instancias; límites (Hume sigue en pie; evidencia vieja y el perihelio de Mercurio).
+- **§7.** Estadística: origen estatal y eugenesia (Galton, Pearson, Spearman, Fisher); descriptiva frente a inferencial; errores de medición y de muestreo; regresión a la media; correlación; estimación e intervalos de confianza; *Literary Digest* 1936; la aleatorización como respuesta al límite del método de la diferencia de Mill (Losee).
+- **§8.** Contraste de hipótesis nula: el té de Fisher, valor p, tamaño del efecto, errores de tipo I y II, el umbral como juicio (enlace con Douglas y el capítulo 9); frecuentistas y bayesianos: **ninguna escuela elimina el juicio, difieren en dónde lo ponen y cuán visible lo dejan**; límite: la «omnivoría metodológica» de la paleontología.
+- **§9.** Coincidencias y comparaciones múltiples: la ley de Bode (Losee), los ingredientes y el cáncer, riesgo relativo y absoluto, Reinhart y Rogoff, inconsistencias en psicología, crisis de replicación.
+- **§10.** Balance en tres registros; **Kuhn frente a Bayes: el bayesianismo modela bien el razonamiento dentro de un espacio de alternativas estabilizado y mal los episodios en que el espacio se rehace** (racionalidad no instantánea, reducción al absurdo de Kuhn); la estadística como teoría de efectos (Martínez, Lennox); prolongaciones en los capítulos 11, 12, 13 y 16; nota de lecturas.
+
+**Capítulo 3**
+
+- **§1.** Se agregan el supuesto clásico que identifica Pérez Ransanz («todos los sujetos que manejan la misma evidencia deben llegar a la misma decisión») y el testimonio de Hempel; declaración de fuente y de la regla de citas de segunda mano.
+- **§2 — reorganizada.** Kuhn (I): la conferencia de 1961 sobre la función del dogma; ciencia normal; la contrastación de aplicaciones y los tres esquemas de Putnam aplicados a Urano y Neptuno (enlace con el capítulo 2 §5); crisis, perigeo lunar y relatividad del contraejemplo; matriz disciplinar, ejemplar y esquema de ley.
+- **§3 — nueva.** Inconmensurabilidad: de la formulación global a la semántica (la hipotenusa) y a la taxonómica y local; el caso de Aristóteles; traducción, interpretación y aprendizaje del lenguaje; «la racionalidad solo supone la posibilidad de comprensión».
+- **§4 — nueva.** Racionalidad sin algoritmo: comparación global, desacuerdo racional, distribución del riesgo, comunidad y racionalidad no instantánea, frónesis, consensos racionales y Lysenko, evolución de los valores; el caso Galileo.
+- **§5 y §6.** Lakatos y Laudan (antiguos §3 y §4), con el rechazo lakatosiano de la «racionalidad instantánea».
+- **§7 — nueva.** Relativismo: el triple relativismo que Laudan atribuye a Kuhn y su respuesta («relativismo acotado»); Kuhn y Taylor; el lenguaje de contrastes transparentes; **seis pautas contra el relativismo**, que cumplen la promesa del capítulo 1, incluida la disolución de la pregunta por la demarcación.
+- **§8.** Problema historiográfico (antiguo §5) con la circularidad de la metametodología, el intuicionismo revisable, el circuito de retroalimentación de Kuhn (enlace con el capítulo 0) y **la autonomía de la narración histórica, cuyas reglas limitan sin determinar, como los valores en la elección de teorías**; se precisa que la espiral de Mill está en el capítulo 2.
+- **§9.** Balance ampliado y nota de lecturas.
+
+**Capítulo 7 y armonización con el capítulo 4**
+
+- El §2 se funda ahora en Martínez: definición de explicación histórica; historicidad ontológica (del diseño a la individuación genealógica) y epistemológica (narrativa, índice de realidad, abejas y elefantes, metáforas y analogías, asimetría entre pasado y presente); refuerzo mutuo y robustez; leyes y generalizaciones (Hull, Mayr, los caballos en América, los molares); completabilidad intrínseca frente a triangulación jerárquica; la disciplina de las narrativas (filogenias, molares de caballos según Lennox, *just-so stories*); paralelo con la narración histórica de Kuhn. **Queda cerrado el pendiente n.º 1 de la entrada del 2026-09-04.**
+- El capítulo 4 remite al 7 (§2) y al 3 (§8), precisa páginas de Martínez y anuncia el tratamiento probabilístico de la relevancia estadística y de los ensayos aleatorizados (capítulo 8 §5 y §7).
+- El §6 del capítulo 7 anuncia el 8 con Lennox (la teoría de Darwin como teoría estadística) y Martínez (las teorías estadísticas como teorías de efectos).
+
+**Otros cambios**
+
+- Capítulo 5 §3: genealogía del empate entre realismo y antirrealismo con Losee (Gémino, Ptolomeo, Osiander, Clavius, Kepler) y la versión kuhniana de la meta-inducción.
+- Capítulo 2 §5: remisión al capítulo 8 sobre la forma probabilística de C2.
+- Capítulo 9: §1 ya no afirma ser el capítulo más extenso (no lo era); §3 remite al 3 §7; §4 remite al 8 §8.
+- Capítulo 1 §5: la cita de Kuhn sobre historia y filosofía lleva páginas.
+- Notas de lecturas en los capítulos 1, 2, 3, 5, 6, 7, 8 y 9; la del capítulo 4 se amplió.
+
+**Bibliografía agregada** (12 entradas)
+
+`perezransanz1999kuhn`, `kuhn1963funcion`, `taylor1983comprension`, `salmon1967foundations`, `hitchcock2017introductory`, `potochnik2024recipes`, `losee1972introduccion`, `earman1992confirmation`, `lennox1992philosophy`, `mcguire1992scientific`, `glymour1992realism`, `salmon1992explanation`. Se modificó `kuhn1977essential` (ahora la edición castellana, con `origdate`).
+
+**Verificaciones hechas**
+
+- `pandoc --citeproc` compila los capítulos 0 a 9 sin advertencias (HTML con MathJax).
+- Las 195 claves del `.bib` están citadas; no hay claves faltantes ni duplicadas.
+- Un PDF de prueba de la primera parte entera, con `xelatex`, `scrbook` y `preamble.tex`, compila; las únicas advertencias son glifos de subíndice (₁, ₂, ₙ, ᵢ) ausentes en Pagella itálica, que ya estaban en el capítulo 2 §6.
+- Las citas textuales llevan página y se cotejaron con las fuentes: Pérez Ransanz contra una extracción con la paginación corregida (el PDF repite un pliego, las pp. 88-89); Martínez contra las imágenes de sus páginas; Losee contra la edición de 1981, cuya paginación coincide con los extractos de la carpeta; Salmon contra la edición del cincuentenario.
+- Los ejemplos numéricos del capítulo 8 se recalcularon: $1-(5/6)^3=91/216$; $1-(35/36)^{24}\approx 0{,}491$; 3/8 en los dos mazos; posterior 0,0089 en el cribado; $0{,}5^8=1/256$; factor de Bayes ≈ 3,95.
+- Sin negritas ni subtítulos de nivel 3 en los capítulos 1 a 9; las remisiones «capítulo N (§M)» apuntan a secciones existentes.
+
+**Pendientes que este trabajo dejó planteados**
+
+1. **Correr `quarto render`**: Quarto no está instalado en la máquina donde se hizo este trabajo. Revisar en especial las fórmulas del capítulo 8, las primeras del libro.
+2. **Ubicación del repositorio.** En esta máquina el repositorio está en `~/Nextcloud/2026/libro-filosofia-ciencia`, dentro de Nextcloud, lo que contradice la decisión documentada (repositorio en `~/proyectos/libro-filosofia-ciencia`, fuera de Nextcloud, para no corromper el `.git`). No se movió nada.
+3. **Extensión del capítulo 8** (~14.000 palabras, el más largo del libro). Evaluar recortes o si conviene convertirlo en `.qmd` con simulaciones (lavado de probabilidades previas, comparaciones múltiples), lo que exigiría los cambios de CI descritos en `ENTORNO.md`.
+4. **Verificar datos de edición**: el año del cuadernillo de Teorema con la conferencia de Kuhn (el cuadernillo dice 1980; la bibliografía de Pérez Ransanz, 1979) y los datos de *La libertad de los modernos* de Taylor (Amorrortu, 2005, trad. Horacio Pons, verificados en catálogos; el PDF no trae portada).
+5. Potochnik y sus coautores escriben «Ronald Fischer» en su recuadro 9.1; el libro usa la grafía correcta, Fisher.
+6. Los recuadros «[Cuadro clasicoso 1]» y «[Cuadro matematicoso 1]» del capítulo 1 §7 siguen vacíos; los capítulos 2 y 6 de Losee y el §3 del capítulo 8 podrían proveer material.
+7. Los glifos de subíndice del capítulo 2 §6 no existen en Pagella itálica: conviene escribirlos como fórmulas.
+8. Del manual colectivo de Pittsburgh quedan sin usar capítulos útiles para la segunda parte, en particular el de Glymour sobre epistemología androide (capítulo 13).
 
 ---
 

@@ -33,9 +33,13 @@ La primera compilación del PDF tarda algunos minutos porque TinyTeX baja
 `babel-spanish`, `hyphen-spanish`, `tex-gyre`, `tex-gyre-math`, `unicode-math`,
 `microtype` y `koma-script`. Las siguientes tardan alrededor de un minuto.
 
-No hace falta Python: el libro todavía no ejecuta código. Cuando exista el
-capítulo 8 habrá que agregar Jupyter, un `requirements.txt` y el paso
-correspondiente en el workflow de CI.
+No hace falta Python para compilar el libro: ningún capítulo ejecuta código. El
+capítulo 8 es prosa (`.md`) con sus ejemplos numéricos resueltos en el texto; sus
+simulaciones viven en un cuaderno aparte, `cuaderno_08_estadistica.ipynb`, que no
+se compila con el libro y que necesita Python 3 con `numpy`, `matplotlib` y `scipy`
+(`pip install -r requirements.txt`, idealmente en un entorno virtual) y Jupyter
+para abrirlo. El cuaderno se distribuye con sus salidas ya ejecutadas, así que se
+puede leer sin correrlo.
 
 **Si solo vas a escribir y revisar el HTML, saltate el paso 2.** El sitio se
 compila en segundos y no necesita LaTeX.
@@ -112,8 +116,8 @@ Se evaluaron cuatro caminos:
 
 **Los capítulos siguen siendo `.md`, no `.qmd`.** Quarto los acepta igual, y así
 cada capítulo se puede compilar suelto con pandoc: la salida de Quarto queda
-abierta si algún día conviene irse. Solo el capítulo 8, cuando exista, necesitará
-ser `.qmd` porque llevará código Python.
+abierta si algún día conviene irse. El capítulo 8 se escribió también como `.md`;
+solo necesitará ser `.qmd` si se decide agregarle código Python ejecutable.
 
 ### Citas: APA 7 con `lang: es`
 
@@ -161,9 +165,10 @@ como decisión abierta.
 
 `number-sections: false`. El manuscrito numera a mano sus capítulos
 ("Capítulo N." en el `title:` del YAML) y sus secciones ("§N."), y las
-remisiones en prosa dependen de esa numeración. Además el capítulo 8 todavía no
-existe: con numeración automática, el 9 pasaría a ser el 8 y todas las
-remisiones del libro quedarían corridas.
+remisiones en prosa dependen de esa numeración. Mientras faltaba el capítulo 8,
+la numeración automática habría corrido todas las remisiones; hoy la razón que
+queda es que el capítulo 0 y la numeración "§N." no se dejan reproducir con la
+automática sin duplicar números.
 
 ### Estructura de los capítulos
 
@@ -184,7 +189,27 @@ Lo único que sigue viviendo solo en Nextcloud es `complementos_bibcienciasffyh/
 
 ---
 
-## 4. Revisar el HTML mientras el repositorio es privado
+## 4. Publicación: GitHub Pages en manual.delaciencia.org
+
+Desde la versión 0.1 (13 de septiembre de 2026) el repositorio es público
+(`github.com/ailcic/libro-filo-ciencia`) y el sitio se publica con GitHub Pages
+en `https://manual.delaciencia.org`:
+
+- El workflow `render.yml` compila HTML y PDF en cada *push* a `main` y, porque
+  la variable de repositorio `PUBLICAR_PAGES` vale `true`, sube `_book` a Pages.
+- El dominio se declara dos veces: en el archivo `CNAME` del repositorio (que
+  `_quarto.yml` copia a `_book` como recurso) y en Settings → Pages → Custom
+  domain. El DNS vive en Cloudflare: un registro `CNAME manual → ailcic.github.io`.
+  Si el registro está *proxied* (nube naranja), el modo SSL de Cloudflare debe
+  ser «Full» para que no haya bucle de redirecciones; con nube gris (DNS only)
+  GitHub emite el certificado y sirve HTTPS directamente.
+- El PDF de cada versión se adjunta al *release* correspondiente (`gh release
+  create vX.Y _book/filosofia-de-la-ciencia.pdf`).
+
+Lo que sigue es la sección anterior, escrita cuando el repositorio era privado;
+se conserva porque describe las alternativas.
+
+### Revisar el HTML si el repositorio vuelve a ser privado
 
 ### Mientras escribís, en tu máquina
 
@@ -236,10 +261,12 @@ máquina (o por Tailscale, si las máquinas ya están en la misma red privada).
 1. **Título definitivo y nombre del autor**: `_quarto.yml` los tiene marcados
    como `TODO`.
 2. **Confirmar la licencia**: quedó CC BY-SA 4.0.
-3. **Capítulo 8** (probabilidad e inferencia): es el único capítulo con código.
-   Cuando exista, será `.qmd`, y habrá que agregar `requirements.txt`, el paso
-   de Python en CI, y decidir la política de `freeze` (si se versiona `_freeze/`
-   o si cada render re-ejecuta el código con semillas fijas).
+3. **Capítulo 8 y su cuaderno**: el capítulo es prosa; las simulaciones están
+   en `cuaderno_08_estadistica.ipynb`, que se ejecuta a mano y se versiona con
+   sus salidas. Si alguna vez se quisiera que el libro ejecute código, habría que
+   pasar el capítulo a `.qmd`, agregar el paso de Python en CI y decidir la
+   política de `freeze`. Mientras el cuaderno esté fuera del libro, nada de eso
+   hace falta.
 4. **Decidir si se quiere bibliografía por capítulo en el PDF** (ver arriba).
 5. **DOI y versionado**: cuando haya una primera versión pública, conviene un
    tag `v0.1`, el PDF adjunto al release y Zenodo vinculado al repositorio para
@@ -249,5 +276,6 @@ máquina (o por Tailscale, si las máquinas ya están en la misma red privada).
    universitario en castellano conviene averiguar la editorial universitaria y
    el repositorio institucional, que son los que dan presencia bibliográfica.
 7. Lo que sigue abierto de las entradas anteriores de la bitácora: verificar el
-   año de la traducción de Popper, el de Díez y Moulines, la cita de Britannica,
-   y armonizar el capítulo 7 §2 con el capítulo 4.
+   año de la traducción de Popper, el de Díez y Moulines y la cita de Britannica.
+   (La armonización del capítulo 7 §2 con el capítulo 4 quedó hecha el
+   2026-09-13.)

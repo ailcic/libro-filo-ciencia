@@ -26,9 +26,9 @@ jobs:
         with:
           tinytex: true
 
-      # El libro no ejecuta código: no hace falta Python ni Jupyter.
-      # Cuando exista el capítulo 08 habrá que agregar aquí setup-python
-      # y la instalación de requirements.txt.
+      # El libro no ejecuta código: no hace falta Python ni Jupyter. El
+      # cuaderno del capítulo 8 (cuaderno_08_estadistica.ipynb) se ejecuta a
+      # mano y se versiona con sus salidas; no forma parte del render.
       - name: Renderizar HTML y PDF
         uses: quarto-dev/quarto-actions/render@v2
         with:

@@ -7,3 +7,6 @@ complementos_bibcienciasffyh/
 
 /.quarto/
 **/*.quarto_ipynb
+
+# Jupyter
+.ipynb_checkpoints/

@@ -15,12 +15,18 @@ problemas clásicos de la disciplina. La **segunda parte** supone adquirido ese
 recorrido y aborda problemas avanzados en la intersección de ciencia,
 tecnología y computación. El capítulo 1 expone el plan completo.
 
-## Estado
+## Estado: versión 0.1
 
-La primera parte está escrita salvo el capítulo 8; la segunda parte y el
-epílogo están pendientes. Lo que se publica aquí es, por lo tanto, un borrador
-en curso: se corrige, se amplía y se reescribe, y cada versión queda registrada
-en el historial del repositorio.
+Esta es la **versión 0.1** del libro (13 de septiembre de 2026): la primera parte
+completa —los capítulos 0 a 9— en su primera versión revisada. La segunda parte y
+el epílogo, que el capítulo 1 anuncia y a los que la primera parte remite, están
+pendientes. Lo que se publica es, por lo tanto, un libro en curso: se corrige, se
+amplía y se reescribe, y cada versión queda registrada en el historial del
+repositorio.
+
+El capítulo 8 tiene un cuaderno de acompañamiento, `cuaderno_08_estadistica.ipynb`,
+una introducción a la probabilidad y la estadística con simulaciones para
+estudiantes de filosofía; se descarga del repositorio y se ejecuta con Python.
 
 ## Cómo leerlo y cómo corregirlo
 

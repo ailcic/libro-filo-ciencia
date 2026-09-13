@@ -1,13 +1,18 @@
 project:
   type: book
   output-dir: _book
+  resources:
+    - CNAME          # dominio de GitHub Pages; debe copiarse a _book
 
 book:
   title: "Filosofía de la ciencia"          # TODO: título definitivo
   subtitle: "Representar, intervenir, historizar"
-  author: ""                                # TODO: nombre del autor
+  author: "Andrés A. Ilcic"
   # Nombre ASCII del PDF: el título lleva tilde y eso rompe URLs y releases.
   output-file: "filosofia-de-la-ciencia"
+  site-url: https://manual.delaciencia.org
+  repo-url: https://github.com/ailcic/libro-filo-ciencia
+  repo-actions: [issue]
   date: today
   date-format: "D [de] MMMM [de] YYYY"
   language: es
@@ -24,10 +29,13 @@ book:
         - capitulo_05_realismo.md
         - capitulo_06_experimentacion_instrumentos.md
         - capitulo_07_modelos_evolucion.md
-        # - capitulo_08_probabilidad_inferencia.qmd   # pendiente (.qmd: lleva Python)
+        - capitulo_08_probabilidad_inferencia.md   # prosa; las simulaciones van en cuaderno_08_estadistica.ipynb (fuera del libro)
         - capitulo_09_valores_comunidad.md
+    # Segunda parte (pendiente). Hay borradores de los capítulos 10, 11 y 12 en el
+    # directorio (capitulo_1N_*.md); no forman parte de la versión 0.1 y no se
+    # renderizan mientras no figuren aquí.
     # - part: "Segunda parte. Ciencia, tecnología y computación"
-    #   chapters:  # capítulos 10-17, pendientes
+    #   chapters:  # capítulos 10-17
     # - capitulo_18_epilogo.md
     - referencias.qmd
 
@@ -38,7 +46,7 @@ link-citations: true
 
 # El manuscrito numera sus capítulos ("Capítulo N.") y sus secciones ("§N.")
 # a mano: la numeración automática duplicaría ambas y se desalinearía de las
-# remisiones en prosa y del capítulo 08, todavía ausente.
+# remisiones en prosa (y de los capítulos de la segunda parte, todavía ausentes).
 number-sections: false
 
 format:

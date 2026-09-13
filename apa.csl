@@ -71,6 +71,7 @@
   <locale xml:lang="es">
     <terms>
       <term name="from">de</term>
+      <term name="original-work-published">trabajo original publicado en</term>
     </terms>
   </locale>
   <locale xml:lang="fr">
